@@ -2,6 +2,17 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
 import Image from 'next/image';
 import PaslonLists from '@/data/paslon.json';
 import { useEffect } from 'react';
@@ -87,13 +98,13 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="w-full flex gap-5">
+        <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-5">
           {PaslonLists.map((e, i) => {
             return (
               <Card className="w-full max-w-sm" key={i}>
-                <CardHeader className="rounded-2xl">
+                <CardHeader className="">
                   <Image
-                    className="w-full rounded-lg"
+                    className="w-full h-60 rounded-lg object-cover"
                     src={e.image}
                     alt={`Foto Paslon ${e.paslonName}`}
                     width={500}
@@ -107,13 +118,38 @@ export default function Home() {
                   <CardDescription>{e.fullNames}</CardDescription>
                 </CardContent>
                 <CardFooter className="flex gap-2">
-                  <Button className="grow" onClick={() => handleVote(e.value)}>
-                    Vote
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="grow">Vote</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Apakah kamu Yakin?</DialogTitle>
+                        <DialogDescription>
+                          Kamu akan memilih paslon{' '}
+                          <b className="text-black">
+                            {e.paslonNumber} | {e.paslonName}
+                          </b>
+                          . Pilihan kamu bersifat permanen dan tidak akan bisa diganti.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <DialogFooter>
+                        <DialogClose asChild>
+                          <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <Button onClick={() => handleVote(e.value)}>Lanjutkan</Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
 
-                  <Button variant="outline" className="grow">
-                    Lihat Visi
-                  </Button>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className="grow">
+                        Lihat Visi
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80">{e.vision}</PopoverContent>
+                  </Popover>
                 </CardFooter>
               </Card>
             );
