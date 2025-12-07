@@ -5,36 +5,23 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex gap-10 min-h-screen w-full max-w-3xl flex-col justify-center items-center py-32 px-16">
-        <div className="flex flex-col items-center gap-6 text-center">
+      <main className="flex gap-10 min-h-screen w-full max-w-3xl flex-col items-center pt-20 px-16">
+        <div className="flex flex-col items-center gap-2 text-center">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black">Pilih dengan bijak</h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600">
-            !!!! - Looking for a starting point or more instructions? Head over to{' '}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950"
-            >
-              Templates
-            </a>{' '}
-            or the{' '}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950"
-            >
-              Learning
-            </a>{' '}
-            center.
+            Saatnya tentukan pilihanmu untuk <span className="font-medium text-zinc-950">SMANSA Singaraja</span> yang
+            lebih baik.
           </p>
         </div>
-        <div className="w-full flex gap-10">
+        <div className="w-full flex gap-5">
           <Card className="w-full max-w-sm">
             <CardHeader className="rounded-2xl">
               <Image
                 className="w-full rounded-lg"
                 src="/paslon/baskara.webp"
                 alt="Next.js logo"
-                width={100}
-                height={100}
+                width={500}
+                height={500}
               />
             </CardHeader>
             <CardContent>
@@ -44,7 +31,7 @@ export default function Home() {
             <CardFooter className="flex gap-2">
               <Button className="grow">Vote</Button>
               <Button variant="outline" className="grow">
-                Visi
+                Lihat Visi
               </Button>
             </CardFooter>
           </Card>
@@ -54,8 +41,8 @@ export default function Home() {
                 className="w-full rounded-lg"
                 src="/paslon/dwinara.webp"
                 alt="Next.js logo"
-                width={100}
-                height={100}
+                width={500}
+                height={500}
               />
             </CardHeader>
             <CardContent>
@@ -65,11 +52,12 @@ export default function Home() {
             <CardFooter className="flex gap-2">
               <Button className="grow">Vote</Button>
               <Button variant="outline" className="grow">
-                Visi
+                Lihat Visi
               </Button>
             </CardFooter>
           </Card>
         </div>
+        <Button variant={'link'}>Log out</Button>
       </main>
     </div>
   );
