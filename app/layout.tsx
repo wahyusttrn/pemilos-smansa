@@ -28,8 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <Footer />
+        <div className="flex flex-col min-h-screen gap-10 bg-zinc-50">
+          {children}
+          <Footer />
+        </div>
         <Toaster position="top-center" theme="light" />
         <Analytics />
       </body>

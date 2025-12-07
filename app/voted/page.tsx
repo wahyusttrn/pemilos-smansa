@@ -39,8 +39,8 @@ export default function Voted() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex gap-5 min-h-screen w-full max-w-3xl flex-col items-center pt-20 sm:px-16 px-3">
+    <div className="flex grow items-center justify-center bg-zinc-50 font-sans">
+      <main className="flex gap-5 w-full max-w-3xl flex-col items-center pt-20 sm:px-16 px-3">
         <div className="flex flex-col items-center gap-6 text-center">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black">
             Terima kasih atas partisipasinya!
