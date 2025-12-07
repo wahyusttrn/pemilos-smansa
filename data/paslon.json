@@ -1,0 +1,18 @@
+[
+  {
+    "paslonNumber": "01",
+    "paslonName": "Baskara",
+    "fullNames": "-- Deskripsi --",
+    "image": "/paslon/baskara.webp",
+    "vision": "--------",
+    "value": 1
+  },
+  {
+    "paslonNumber": "02",
+    "paslonName": "Dwinara",
+    "fullNames": "-- Deskripsi --",
+    "image": "/paslon/dwinara.webp",
+    "vision": "--------",
+    "value": 2
+  }
+]

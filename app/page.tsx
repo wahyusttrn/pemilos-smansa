@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
+import PaslonLists from '@/data/paslon.json';
 
 export default function Home() {
   return (
@@ -14,48 +15,33 @@ export default function Home() {
           </p>
         </div>
         <div className="w-full flex gap-5">
-          <Card className="w-full max-w-sm">
-            <CardHeader className="rounded-2xl">
-              <Image
-                className="w-full rounded-lg"
-                src="/paslon/baskara.webp"
-                alt="Next.js logo"
-                width={500}
-                height={500}
-              />
-            </CardHeader>
-            <CardContent>
-              <CardTitle>01 | Baskara</CardTitle>
-              <CardDescription>-- Deskripsi --</CardDescription>
-            </CardContent>
-            <CardFooter className="flex gap-2">
-              <Button className="grow">Vote</Button>
-              <Button variant="outline" className="grow">
-                Lihat Visi
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="w-full max-w-sm">
-            <CardHeader className="rounded-2xl">
-              <Image
-                className="w-full rounded-lg"
-                src="/paslon/dwinara.webp"
-                alt="Next.js logo"
-                width={500}
-                height={500}
-              />
-            </CardHeader>
-            <CardContent>
-              <CardTitle>02 | Dwinara</CardTitle>
-              <CardDescription>-- Deskripsi --</CardDescription>
-            </CardContent>
-            <CardFooter className="flex gap-2">
-              <Button className="grow">Vote</Button>
-              <Button variant="outline" className="grow">
-                Lihat Visi
-              </Button>
-            </CardFooter>
-          </Card>
+          {PaslonLists.map((e, i) => {
+            return (
+              <Card className="w-full max-w-sm" key={i}>
+                <CardHeader className="rounded-2xl">
+                  <Image
+                    className="w-full rounded-lg"
+                    src={e.image}
+                    alt={`Foto Paslon ${e.paslonName}`}
+                    width={500}
+                    height={500}
+                  />
+                </CardHeader>
+                <CardContent>
+                  <CardTitle>
+                    {e.paslonNumber} | {e.paslonName}
+                  </CardTitle>
+                  <CardDescription>{e.fullNames}</CardDescription>
+                </CardContent>
+                <CardFooter className="flex gap-2">
+                  <Button className="grow">Vote</Button>
+                  <Button variant="outline" className="grow">
+                    Lihat Visi
+                  </Button>
+                </CardFooter>
+              </Card>
+            );
+          })}
         </div>
         <Button variant={'link'}>Log out</Button>
       </main>
