@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const { username, password } = body;
 
     if (!username || !password) {
-      return NextResponse.json({ message: 'Username / Password cannot empty' }, { status: 400 });
+      return NextResponse.json({ message: 'Username / Password cannot be empty' }, { status: 400 });
     }
 
     const user = await prisma.user.findUnique({
