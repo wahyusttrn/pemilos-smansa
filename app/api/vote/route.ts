@@ -34,3 +34,34 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function GET(request: NextRequest) {
+  try {
+    const voteOne = await prisma.user.count({
+      where: { choice: 1 }
+    });
+
+    const voteTwo = await prisma.user.count({
+      where: { choice: 2 }
+    });
+
+    const notVoted = await prisma.user.count({
+      where: { choice: 0 }
+    });
+
+    return NextResponse.json(
+      {
+        message: 'Voting result fetched successfully',
+        result: {
+          candidate1: voteOne,
+          candidate2: voteTwo,
+          notVoted: notVoted
+        }
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
+  }
+}
