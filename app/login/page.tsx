@@ -1,9 +1,10 @@
 import Image from 'next/image';
-import { Field, FieldGroup, FieldLabel, FieldSet } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 
-export default function Home() {
+export default function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
       <main className="flex gap-10 min-h-screen w-full max-w-3xl flex-col justify-center items-center py-32 px-16">
@@ -30,6 +31,29 @@ export default function Home() {
             center.
           </p>
         </div>
+        <Card className="w-full max-w-sm">
+          <CardContent>
+            <form>
+              <div className="flex flex-col gap-6">
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Username</Label>
+                  <Input id="username" type="username" required />
+                </div>
+                <div className="grid gap-2">
+                  <div className="flex items-center">
+                    <Label htmlFor="password">Password</Label>
+                  </div>
+                  <Input id="password" type="password" required />
+                </div>
+              </div>
+            </form>
+          </CardContent>
+          <CardFooter className="flex-col gap-2">
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
+          </CardFooter>
+        </Card>
       </main>
     </div>
   );
