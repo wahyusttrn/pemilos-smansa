@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ message: 'Invalid Username / Password' }, { status: 401 });
     }
 
-    if (user.choice !== 0) {
-      return NextResponse.json({ message: 'User has already voted' }, { status: 403 });
-    }
+    // if (user.choice !== 0) {
+    //   return NextResponse.json({ message: 'User has already voted' }, { status: 403 });
+    // }
 
     return NextResponse.json(
       {
