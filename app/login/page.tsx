@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import { toast } from 'sonner';
 
 export default function Login() {
   const router = useRouter();
@@ -42,19 +43,23 @@ export default function Login() {
       const data = await res.json();
 
       if (!res.ok) {
-        console.log('Login error:', data.message);
+        toast.error('Login error!', {
+          description: data.message
+        });
         return;
       }
 
-      //! replace with sonner later
-      console.log('Login success:', data);
+      toast.success('Login sukses!', {
+        description: `Selamat memilih, ${data.fullname}`
+      });
 
       localStorage.setItem('username', data.username);
 
       router.replace('/');
     } catch (error) {
-      //! replace with sonner later
-      console.log('Login request error:', error);
+      toast.error('Login error!', {
+        description: String(error)
+      });
     } finally {
       setLoading(false);
     }
