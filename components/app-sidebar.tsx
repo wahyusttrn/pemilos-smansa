@@ -1,5 +1,6 @@
-import { CircleAlert, Home } from 'lucide-react';
+'use client';
 
+import { CircleAlert, Home } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +13,7 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { useRouter } from 'next/navigation';
 
 const items = [
   {
@@ -27,6 +29,13 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    router.push('/login');
+  };
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -46,7 +55,9 @@ export function AppSidebar() {
               ))}
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Button variant={'outline'}>Log out</Button>
+                  <Button variant={'outline'} onClick={handleLogout}>
+                    Log out
+                  </Button>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
