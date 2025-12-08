@@ -18,8 +18,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 type Result = {
-  paslon1: number;
-  paslon2: number;
+  candidate1: number;
+  candidate2: number;
   notVoted: number;
 };
 
@@ -37,23 +37,26 @@ export default function Dashboard() {
 
     const validateAdmin = async () => {
       try {
-        const userRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user?username=${username}`);
-        const userData = await userRes.json();
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/user?username=${username}`);
+        const data = await res.json();
 
-        if (userData.status !== 'ADMIN') {
+        if (data.user.status !== 'ADMIN') {
           router.push('/');
           return;
         }
-
-        const resultRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/result`);
-        const resultData = await resultRes.json();
-        setResult(resultData);
       } catch (error) {
         console.log('Dashboard error:', error);
       }
     };
 
+    const getResult = async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/vote`);
+      const data = await res.json();
+      setResult(data.result);
+    };
+
     validateAdmin();
+    getResult();
   }, [router]);
 
   return (
@@ -88,6 +91,7 @@ export default function Dashboard() {
           })}
         </div>
 
+        {/* this whole thing is not dynamic with the data yet */}
         <Dialog>
           <DialogTrigger asChild>
             <Button>Lihat Hasil</Button>
@@ -104,13 +108,13 @@ export default function Dashboard() {
                   <p>
                     {e.paslonNumber} | {e.paslonName}
                   </p>
-                  <p className="font-bold">{i === 0 ? result?.paslon1 ?? '---' : result?.paslon2 ?? '---'}</p>
+                  <p className="font-bold">{e.value === 1 ? result?.candidate1 : result?.candidate2}</p>
                 </div>
               ))}
             </div>
 
             <p className="mt-8">
-              Belum memilih: <strong>{result?.notVoted ?? '---'}</strong>
+              Belum memilih: <strong>{Number(result?.notVoted) - 1}</strong>
             </p>
 
             <DialogFooter>
@@ -120,6 +124,9 @@ export default function Dashboard() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+
+        {/* this is bad, not dynamic */}
+        <h1 className="font-bold">Total pemilih: 1215</h1>
       </main>
     </div>
   );
