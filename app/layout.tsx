@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="flex flex-col min-h-screen gap-10 bg-zinc-50">
+        <div className="flex flex-col min-h-screen gap-10 bg-zinc-50 justify-center items-center">
           {children}
           <Footer />
         </div>

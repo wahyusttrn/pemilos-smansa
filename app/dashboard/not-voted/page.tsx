@@ -72,8 +72,8 @@ export default function NotVoted() {
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Full ame</TableHead>
-              <TableHead>status</TableHead>
+              <TableHead>Username</TableHead>
+              <TableHead>Full name</TableHead>
               <TableHead className="text-right">Status</TableHead>
             </TableRow>
           </TableHeader>
