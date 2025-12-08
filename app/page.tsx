@@ -39,6 +39,9 @@ export default function Home() {
           return;
         }
 
+        if (data.user.status === 'ADMIN') {
+          router.replace('/dashboard');
+        }
         if (data.user.choice !== 0) {
           router.replace('/voted');
         }

@@ -55,7 +55,11 @@ export default function Login() {
 
       localStorage.setItem('username', data.username);
 
-      router.replace('/');
+      if (data.status === 'ADMIN') {
+        router.replace('/dashboard');
+      } else {
+        router.replace('/');
+      }
     } catch (error) {
       toast.error('Login error!', {
         description: String(error)
