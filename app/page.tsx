@@ -15,11 +15,12 @@ import {
 } from '@/components/ui/dialog';
 import Image from 'next/image';
 import PaslonLists from '@/data/paslon.json';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const username = localStorage.getItem('username');
@@ -50,6 +51,8 @@ export default function Home() {
   }, [router]);
 
   const handleVote = async (value: number) => {
+    setLoading(true);
+
     try {
       const username = localStorage.getItem('username');
 
@@ -79,6 +82,8 @@ export default function Home() {
       router.push('/voted');
     } catch (error) {
       console.log('Vote failed:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -137,7 +142,9 @@ export default function Home() {
                         <DialogClose asChild>
                           <Button variant="outline">Cancel</Button>
                         </DialogClose>
-                        <Button onClick={() => handleVote(e.value)}>Lanjutkan</Button>
+                        <Button onClick={() => handleVote(e.value)} disabled={loading}>
+                          {loading ? 'Mengirim...' : 'Lanjutkan'}
+                        </Button>
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
